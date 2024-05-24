@@ -9,6 +9,6 @@
 
 
 
-![jujutsu kaisen](https://tinyurl.com/bddyt6y9)
+[jujutsu kaisen](https://tinyurl.com/bddyt6y9)
 [files drive ADSO](https://tinyurl.com/4657t2vw)
 [mi pagina web](https://tinyurl.com/apvpeacd)
