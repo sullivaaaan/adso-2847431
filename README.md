@@ -3,13 +3,11 @@
 
 ### Centro de procesos industriales y construccion
 
+![One Piece](https://tinyurl.com/shirohige)
 |# |topic     |Description       |
 |--|--        |-----             |
 |01|Javascript|JS Vanilla Objects|
 
-
-
-[One Piece](https://tinyurl.com/shirohige)
 
 [files drive ADSO](https://tinyurl.com/4657t2vw)
 [mi pagina web](https://tinyurl.com/apvpeacd)
