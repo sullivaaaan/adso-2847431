@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One piece</title>
+    <section>
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    </section class="owl-carousel owl-theme">
+</head>
+<body>
+    <main>
+        <a name="home"></a>
+        <!-- Navbar -->
+         <header>
+            <img src="images/logo.png" alt="isologo">
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#characters">Characters</a>
+                <a href="#weapons">Weapons</a>
+                <a href="#fruits">Demon fruits</a>
+            </nav>
+         </header>
+         <!--- Slider --->
+         <section class="slider1 owl-carousel owl-theme">
+            <img src="images/slider01.png" alt="slider01">
+            <img src="images/slider01.png" alt="slider01">
+            <img src="images/slider01.png" alt="slider01">
+         </section>
+         <!-- characters -->
+          <section class="characters">
+            <a name="characters"></a>
+            <h2>Characters</h2>
+            <div class="slider2 owl-carousel owl-theme">
+                <article>
+                    <figure>
+                        <img src="/01-responsive-design/images/personajes/01-shirohige.png" alt="shirohige">
+                        <figcaption>Shirohige</figcaption>
+                    </figure>
+                </article>
+                <article>
+                    <figure>
+                        <img src="/01-responsive-design/images/personajes/02-law.png" alt="law">
+                        <figcaption>Trafalgar D. Water Law</figcaption>
+                    </figure>
+                </article>
+                <article>
+                    <figure>
+                        <img src="/01-responsive-design/images/personajes/03-shanks.png" alt="shanks">
+                        <figcaption>Shanks</figcaption>
+                    </figure>
+                </article>
+                <article>
+                    <figure>
+                        <img src="/01-responsive-design/images/personajes/04-zoro.png" alt="zoro">
+                        <figcaption>Roronoa Zoro</figcaption>
+                    </figure>
+                </article>
+            </div>
+          </section>
+    </main>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slider1').owlCarousel({
+                stagePadding: 0,
+                items: 1,
+                loop:true,
+                nav:true,
+            })
+            $('.slider2').owlCarousel({
+                margin:10,
+                loop:true,
+                dots:false,
+                nav:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
+        });
+    </script>
+</body>
+</html>

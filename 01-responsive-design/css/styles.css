@@ -1,0 +1,168 @@
+/*------
+Fonts
+--------*/
+@import url('fonts.css');
+/*------
+Reset
+--------*/
+@import url('reset.css');
+/*------
+Variables
+--------*/
+:root{
+    --font-heading:'Merienda', sans-serif;
+    --font-body: 'Merienda', sans-serif;
+    --color1: #221913;
+    --color2: #410D1E;
+    --color3: #C0D2D6;
+    --color4: #C1B7A9;
+}
+/*--------
+General
+--------*/
+body{
+    background-color: var(--color1);
+    color:var(--color3);
+    main{
+        header{
+            background-color: transparent;
+            opacity: 100%;
+            position: fixed;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between ;
+            height: 100px;
+            width: 100%;
+            padding-inline: 1rem;
+            img{
+                width: 200px;
+            }
+            nav{
+                display: flex;
+                gap: 1rem;
+                a:is(:link, :visited){
+                    color: var(--color3);
+                    font-family: var(--font-heading);
+                    text-decoration: none;
+                    font-size: 25px;
+                    display: flex;
+                    flex-direction: column;
+                    transition: transform 0.2s ease-in;
+                    align-items: center;
+                    width: 170px;
+                }
+                a:is(:hover){
+                    transform: scale(1.1);
+                    transform: translateY(5px);
+                }
+            }
+        }
+        div.owl-nav{
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50% + 80px);
+            button{
+                transition: all 0.4s ease-in;
+                  span{
+                    font-size: 60px;
+                    opacity: 90%;
+                    display: center;
+                    height: 70px;
+                    width: 70px;
+                    text-indent: -9999px;
+                  }  
+                }
+                button.btn-prev{
+                    &:hover{
+                        background: transparent !important;
+                        transform: translatex(-5px);
+                    }
+                    span{
+                        background: url(../images/btn-Prev.svg) no-repeat center;
+                    }
+                }
+                button.btn-next{
+                    &:hover{
+                        background: transparent !important;
+                        transform: translatex(5px);
+                    }
+                    span{
+                        background: url(../images/btn-Next.svg) no-repeat center;
+                    }
+                }
+            }
+        /* section slider */
+        section.slider1{
+            padding-top: 80px;
+            background-color: var(--color1);
+                div.owl-dots{
+                    z-index: 0px;
+                    position: relative;
+                    margin-top: -30px;
+                    button.owl-dot{
+                        span{
+                            transition: all 0.4s ease-in;
+                            width: 15px;
+                            height: 15px;
+                            background-color: var(--color3);
+                        }
+                    }
+                    button.owl-dot.active{
+                        span{
+                            background-color: var(--color1);
+                        }
+                    }
+                    button.owl-dot:hover{
+                        span{
+                            background-color: var(--color3);
+                            transform: scale(1.5);
+                        }
+                    }
+                }
+            }
+            /* section: characters*/
+            section.characters{
+                background-color: var(--color1);
+                padding: 150px ;
+                h2{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    font-family: var(--font-heading);
+                    font-size: 30px;
+                    margin-left: -6rem;
+                    margin-top: -6rem;
+                    width: 400px;
+                }
+                div.slider2{
+                   margin-inline: auto;
+                   margin-block: 2rem;
+                   width: 90%;
+                    article{
+                        height: 400px;                  
+                        figure{
+                            img{
+                                height: 300px;
+                                object-fit: contain;
+                            }
+                        }
+                        figcaption{
+                            background-color: var(--color1);
+                            color: var(--color4);
+                            font-family: var(--font-body);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 24px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
