@@ -8,7 +8,7 @@
     <style>
         section.characters {
             display: grid;
-            grid-template-columns: repeat(5,220px);
+            grid-template-columns: repeat(5, 220px);
             margin: 2rem 0 5rem 0;
             gap: 1rem;
         }
@@ -61,8 +61,17 @@
             bottom: 0;
         }
 
-        .modal {
+        /* Animación del modal */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
+        .modal {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -82,6 +91,7 @@
             max-width: 600px;
             border-radius: 10px;
             position: relative;
+            animation: fadeIn 1s ease-in-out;
         }
         .close {
             color: #aaa;
@@ -99,17 +109,17 @@
 
         @media screen and (max-width: 1190px) {
             section.characters {
-                grid-template-columns: repeat(4,220px);
+                grid-template-columns: repeat(4, 220px);
             }
         }
         @media screen and (max-width: 960px) {
             section.characters {
-                grid-template-columns: repeat(3,220px);
+                grid-template-columns: repeat(3, 220px);
             }
         }
         @media screen and (max-width: 720px) {
             section.characters {
-                grid-template-columns: repeat(2,220px);
+                grid-template-columns: repeat(2, 220px);
             }
         }
     </style>
@@ -157,20 +167,20 @@
         const closeModal = document.querySelector('.close');
 
         const fetchCharacters = async () => {
-            for(let i = 1; i <= 40; i++){
-                let url = 'https://rickandmortyapi.com/api/character/'+i;
+            for (let i = 1; i <= 40; i++) {
+                let url = 'https://rickandmortyapi.com/api/character/' + i;
                 await fetch(url)
                     .then((response) => response.json())
-                    .then((data) =>{
+                    .then((data) => {
                         characters.innerHTML += '<div class="character"> \
                             <article>\
-                                <h4>'+data.name.substring(0, 16)+'</h4>\
-                                <h5 class="'+data.status+'">'+data.status+'</h5>\
-                                <button class="btn-show" data-id="'+data.id+'"> + info </button>\
+                                <h4>' + data.name.substring(0, 16) + '</h4>\
+                                <h5 class="' + data.status + '">' + data.status + '</h5>\
+                                <button class="btn-show" data-id="' + data.id + '"> + info </button>\
                             </article>\
-                            <img src="'+data.image+'">\
+                            <img src="' + data.image + '">\
                         </div>';
-                    })
+                    });
             }
             addClickEvents();
         }
@@ -179,12 +189,13 @@
             const btnsShow = document.querySelectorAll('.btn-show');
 
             btnsShow.forEach(element => {
-                element.addEventListener('click', function() {
+                element.addEventListener('click', function () {
                     const characterId = this.getAttribute('data-id');
                     fetchCharacterDetails(characterId);
                 });
             });
         }
+
         function fetchCharacterDetails(id) {
             fetch('https://rickandmortyapi.com/api/character/' + id)
                 .then((response) => response.json())
@@ -196,19 +207,22 @@
                     modalGender.textContent = data.gender;
                     modalOrigin.textContent = data.origin.name;
                     modalLocation.textContent = data.location.name;
+                    
+                    // Mostrar el modal con la animación
                     modal.style.display = 'block';
+                    modal.classList.add('fadeIn');
                 });
         }
 
-
         closeModal.addEventListener('click', () => {
             modal.style.display = 'none';
+            modal.classList.remove('fadeIn');
         });
-
 
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
+                modal.classList.remove('fadeIn');
             }
         });
 
