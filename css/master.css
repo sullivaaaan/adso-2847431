@@ -78,6 +78,7 @@ body{
     color: var(--color-pri);
     font-family: var(--font-family);
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
