@@ -11,87 +11,108 @@
             grid-template-columns: repeat(5,220px);
             margin: 2rem 0 5rem 0;
             gap: 1rem;
-            div.character {
-                border: 4px solid #fff;
-                border-radius: 6px;
-                position: relative;
-                overflow: hidden;
-                height: 220px;
-                width: 220px;
-                article,
-                img{
-                    position: absolute;
-                }
-                img{
-                    object-fit: cover;
-                    max-width: 220px;
-                }
-                article{
-                    background-color: #000c;
-                    z-index: 1;
-                    bottom: -100px;
-                    padding: 0.4rem;
-                    transition: bottom 0.4s ease-in;
-                    width: 100%;
-                    h4, h5 {
-                        color: #fff;
-                    }
-
-                    .Alive{
-                        color: #adff2f;
-                    }
-
-                    .Dead{
-                        color: #dc143c;
-                    }
-                        
-                    
-                }
-
-                button.btn-show{
-                    border: none;
-                    border-radius: 20px;
-                    cursor: pointer;
-                    padding: 0.1rem 0.4rem;
-                    transition: transform 0.2s ease-in;
-                    font-size: 0.8rem;
-                    &:hover{
-                        transform: scale(1.13);
-                    }
-
-                }
-
-
-                &:hover article{
-                    bottom:0;
-                }
-                img{
-                    object-fit: cover;
-                }
-            }
         }
+        div.character {
+            border: 4px solid #fff;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+            width: 220px;
+        }
+        div.character article,
+        div.character img {
+            position: absolute;
+        }
+        div.character img {
+            object-fit: cover;
+            max-width: 220px;
+        }
+        div.character article {
+            background-color: #000c;
+            z-index: 1;
+            bottom: -100px;
+            padding: 0.4rem;
+            transition: bottom 0.4s ease-in;
+            width: 100%;
+        }
+        div.character article h4,
+        div.character article h5 {
+            color: #fff;
+        }
+        div.character article .Alive {
+            color: #adff2f;
+        }
+        div.character article .Dead {
+            color: #dc143c;
+        }
+        div.character button.btn-show {
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            padding: 0.1rem 0.4rem;
+            transition: transform 0.2s ease-in;
+            font-size: 0.8rem;
+        }
+        div.character button.btn-show:hover {
+            transform: scale(1.13);
+        }
+        div.character:hover article {
+            bottom: 0;
+        }
+
+        .modal {
+
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            background-color: #000000;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         @media screen and (max-width: 1190px) {
             section.characters {
-            display: grid;
-             grid-template-columns: repeat(4,220px);
+                grid-template-columns: repeat(4,220px);
             }
         }
-
         @media screen and (max-width: 960px) {
             section.characters {
-            display: grid;
-             grid-template-columns: repeat(3,220px);
+                grid-template-columns: repeat(3,220px);
             }
         }
-
         @media screen and (max-width: 720px) {
             section.characters {
-            display: grid;
-             grid-template-columns: repeat(2,220px);
+                grid-template-columns: repeat(2,220px);
             }
         }
     </style>
-    
 </head>
 <body class="level2">
     <nav>
@@ -108,43 +129,89 @@
             
         </section>
     </main>
-    <script>
-        //Ellements
-        const characters = document.querySelector('.characters');
-       
 
-        //fetch all characters
+    <!-- Modal -->
+    <div id="characterModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalName"></h2>
+            <img id="modalImage" src="" alt="Character Image" style="max-width: 100%; height: auto;">
+            <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+            <p><strong>Species:</strong> <span id="modalSpecies"></span></p>
+            <p><strong>Gender:</strong> <span id="modalGender"></span></p>
+            <p><strong>Origin:</strong> <span id="modalOrigin"></span></p>
+            <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const characters = document.querySelector('.characters');
+        const modal = document.getElementById('characterModal');
+        const modalName = document.getElementById('modalName');
+        const modalImage = document.getElementById('modalImage');
+        const modalStatus = document.getElementById('modalStatus');
+        const modalSpecies = document.getElementById('modalSpecies');
+        const modalGender = document.getElementById('modalGender');
+        const modalOrigin = document.getElementById('modalOrigin');
+        const modalLocation = document.getElementById('modalLocation');
+        const closeModal = document.querySelector('.close');
+
         const fetchCharacters = async () => {
             for(let i = 1; i <= 40; i++){
                 let url = 'https://rickandmortyapi.com/api/character/'+i;
-            await fetch(url)
-                .then((response) => response.json())
-                .then((data) =>{
-                    //console.log(data);
-                    characters.innerHTML += '<div class="character"> \
-                        <article>\
-                            <h4>'+data.name.substring(0, 16)+'</h4>\
-                         <h5 class="'+data.status+'">'+data.status+'</h5>\
-                         <button class="btn-show" data-id="'+data.id+'"> + info </button>\
-                        </article>\
-                        <img src="'+data.image+'">\
-                    </div>';
-                })
+                await fetch(url)
+                    .then((response) => response.json())
+                    .then((data) =>{
+                        characters.innerHTML += '<div class="character"> \
+                            <article>\
+                                <h4>'+data.name.substring(0, 16)+'</h4>\
+                                <h5 class="'+data.status+'">'+data.status+'</h5>\
+                                <button class="btn-show" data-id="'+data.id+'"> + info </button>\
+                            </article>\
+                            <img src="'+data.image+'">\
+                        </div>';
+                    })
             }
-            addClickEvents()
-            
+            addClickEvents();
         }
+
         function addClickEvents() {
-             const btnsShow = document.querySelectorAll('.btn-show')
+            const btnsShow = document.querySelectorAll('.btn-show');
 
             btnsShow.forEach(element => {
-             element.addEventListener('click', function() {
-                 alert(this.getAttribute('data-id'))
-                })
-            })
-       
-         
+                element.addEventListener('click', function() {
+                    const characterId = this.getAttribute('data-id');
+                    fetchCharacterDetails(characterId);
+                });
+            });
         }
+        function fetchCharacterDetails(id) {
+            fetch('https://rickandmortyapi.com/api/character/' + id)
+                .then((response) => response.json())
+                .then((data) => {
+                    modalName.textContent = data.name;
+                    modalImage.src = data.image;
+                    modalStatus.textContent = data.status;
+                    modalSpecies.textContent = data.species;
+                    modalGender.textContent = data.gender;
+                    modalOrigin.textContent = data.origin.name;
+                    modalLocation.textContent = data.location.name;
+                    modal.style.display = 'block';
+                });
+        }
+
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
         fetchCharacters();
     </script>
 </body>
