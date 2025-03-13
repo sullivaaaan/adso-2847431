@@ -24,16 +24,28 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-                'document' => fake()->unique()->randomNumber(8, true),
-                'fullname' => fake()->name(),
-                'gender' => fake()->randomElement(['Male', 'Female', 'Other']),
-                'birthdate' => fake()->date(),
-                'phone' => fake()->numerify('310#######'),
+                'document' => fake()->randomNumber(8, true),
+                'gender' => fake()->randomElement(['Male', 'Female']),
+                'fullname' => function ($attributes) {
+                    return $attributes['gender'] === 'Male' ? fake()->firstNameMale() . ' ' . fake()->lastName() : fake()->firstNameFemale() . ' ' . fake()->lastName();
+                },
+                'birthdate' => fake()->dateTimeBetween('1974-01-01', '2004-12-31')->format('Y-m-d'), // Entre 1974 y 2004
+                'photo' => function ($attributes) {
+                    return $attributes['gender'] === 'Male'
+                        ? 'https://randomuser.me/api/portraits/men/' . fake()->numberBetween(1, 99) . '.jpg'
+                        : 'https://randomuser.me/api/portraits/women/' . fake()->numberBetween(1, 99) . '.jpg';
+                },
+                'phone' => fake()->phoneNumber(),
                 'email' => fake()->unique()->safeEmail(),
+                'email_verified_at' => fake()->optional()->dateTime(),
                 'password' => bcrypt('1234'), // Contraseña fija en 1234
+                'role' => fake()->randomElement(['Admin', 'User', 'Moderator']),
+                'remember_token' => fake()->uuid(),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
+            
+            
             
     }
 
