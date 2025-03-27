@@ -27,6 +27,10 @@ Route::get('show/pets', function(){
     //var_dump($pets->toArray());
     dd($pets->toArray());
 });
+Route::get('pets/{id}', function($id) {
+    $pet = Pet::findOrFail($id);
+    return view('pet-details')->with('pet', $pet);
+})->name('pets.show');
 
 Route::get('user/list', function(){
     $users = User::take(20)->get();
@@ -48,6 +52,17 @@ Route::get('user/list', function(){
         $code .= "</tr>";
     }
     return $code .= "</table>";
+});
+
+route::get('view/blade', function(){
+    $title = "examples blade";
+    $pets = Pet::whereIn('kind', ['dog', 'cat'])->get();
+
+
+    return view('example-view')
+        ->with('title', $title)
+        ->with('pets', $pets);
+
 });
 
 Route::view('dashboard', 'dashboard')
