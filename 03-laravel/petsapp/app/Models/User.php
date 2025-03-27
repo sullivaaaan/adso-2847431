@@ -26,8 +26,8 @@ class User extends Authenticatable
         'photo',
         'phone',
         'email',
-        'password',
-        'role',
+        'pasword',
+        'role'
     ];
 
     /**
@@ -51,6 +51,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    //relationShip: user hasMany Adoption
+    public function adoptions(){
+        return $this->hasMany(Adoption::class);
     }
 
     /**

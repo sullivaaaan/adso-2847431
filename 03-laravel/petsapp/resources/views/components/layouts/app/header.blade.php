@@ -8,11 +8,11 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <a href="{{ route('dashboard') }}" class="ml-2 mr-5 flex items-center space-x-2 lg:ml-0" wire:navigate>
-                <x-app-logo />
+                <x-app-logo class="size-8" href="#"></x-app-logo>
             </a>
 
             <flux:navbar class="-mb-px max-lg:hidden">
-                <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                <flux:navbar.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:navbar.item>
             </flux:navbar>
@@ -20,19 +20,19 @@
             <flux:spacer />
 
             <flux:navbar class="mr-1.5 space-x-0.5 py-0!">
-                <flux:tooltip :content="__('Search')" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
+                <flux:tooltip content="Search" position="bottom">
+                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" label="Search" />
                 </flux:tooltip>
-                <flux:tooltip :content="__('Repository')" position="bottom">
+                <flux:tooltip content="Repository" position="bottom">
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="folder-git-2"
                         href="https://github.com/laravel/livewire-starter-kit"
                         target="_blank"
-                        :label="__('Repository')"
+                        label="Repository"
                     />
                 </flux:tooltip>
-                <flux:tooltip :content="__('Documentation')" position="bottom">
+                <flux:tooltip content="Documentation" position="bottom">
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="book-open-text"
@@ -93,12 +93,12 @@
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="ml-1 flex items-center space-x-2" wire:navigate>
-                <x-app-logo />
+                <x-app-logo class="size-8" href="#"></x-app-logo>
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')">
-                    <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                <flux:navlist.group heading="Platform">
+                    <flux:navlist.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                     </flux:navlist.item>
                 </flux:navlist.group>

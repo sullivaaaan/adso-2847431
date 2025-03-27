@@ -13,35 +13,37 @@ class PetSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("pets")->insert([
-            'name' => 'firulais',
-            'kind' => 'dog',
-            'weight' => '16',
-            'age' => '24',
-            'breed' => 'Shiba Inu',
-            'location' => 'kioto',
-            'description' => 'El Shiba Inu es un perro japonés pequeño, ágil y de pelaje rojizo',
-            'created_at'=> now()
+        DB::table('pets')->insert([
+            'name'=>'Firulais',
+            'Kind'=>'Dog',
+            'weight'=>'16',
+            'age'=>'24',
+            'breed'=>'Shiba Inu',
+            'location'=>'Kioto',
+            'description'=>'',
+            'created_at'=>now()
         ]);
-        DB::table("pets")->insert([
-            'name' => 'michi',
-            'kind' => 'cat',
-            'weight' => '4',
-            'age' => '18',
-            'breed' => 'siames',
-            'location' => 'osaka',
-            'description' => ' el gato siamés es elegante, vocal y de ojos azules',
-            'created_at'=> now()
+
+        DB::table('pets')->insert([
+            'name'=>'Michi',
+            'Kind'=>'Cat',
+            'weight'=>'4',
+            'age'=>'18',
+            'breed'=>'Siames',
+            'location'=>'Osaka',
+            'description'=>'',
+            'created_at'=>now()
         ]);
-        DB::table("pets")->insert([
-            'name' => 'hawk',
-            'kind' => 'pig',
-            'weight' => '16',
-            'age' => '24',
-            'breed' => 'mangalica',
-            'location' => 'tokyo',
-            'description' => 'el cerdo mangalica es robusto, lanudo y originario de Hungría.',
-            'created_at'=> now()
+
+        DB::table('pets')->insert([
+            'name'=>'Killer',
+            'Kind'=>'Dog',
+            'weight'=>'5',
+            'age'=>'48',
+            'breed'=>'Pincher',
+            'location'=>'Tokio',
+            'description'=>'',
+            'created_at'=>now()
         ]);
     }
 }

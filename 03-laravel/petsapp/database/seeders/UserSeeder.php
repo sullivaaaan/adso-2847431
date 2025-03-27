@@ -14,23 +14,23 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = new User;
-        $user->document = 7500001;
-        $user->fullname = "John Wick";
-        $user->gender = "Male";
-        $user->birthdate = "1980-01-01";
-        $user->phone = 3004447985;
-        $user->email = 'jwick@gmail.com';
+        $user->document = 7000001;
+        $user->fullname = 'John Wick';
+        $user->gender = 'Male';
+        $user->birthdate = '1980-10-12';
+        $user->phone = 3205673456;
+        $user->email = 'jwick@email.com';
         $user->password = bcrypt('admin');
-        $user->role = 'admin';
+        $user->role = 'Admin';
         $user->save();
 
         $user = new User;
-        $user->document = 7500002;
-        $user->fullname = "Lara Croft";
-        $user->gender = "Female";
-        $user->birthdate = "1994-05-28";
-        $user->phone = 30175875390;
-        $user->email = 'tombr@gmail.com';
+        $user->document = 7000002;
+        $user->fullname = 'Lara Croft';
+        $user->gender = 'Female';
+        $user->birthdate = '1994-08-05';
+        $user->phone = 3209890976;
+        $user->email = 'lara@email.com';
         $user->password = bcrypt('12345');
         $user->save();
     }

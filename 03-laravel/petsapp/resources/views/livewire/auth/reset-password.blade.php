@@ -69,7 +69,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Reset password')" :description="__('Please enter your new password below')" />
+    <x-auth-header title="Reset password" description="Please enter your new password below" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -78,8 +78,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Email Address -->
         <flux:input
             wire:model="email"
-            :label="__('Email')"
+            id="email"
+            label="{{ __('Email') }}"
             type="email"
+            name="email"
             required
             autocomplete="email"
         />
@@ -87,21 +89,25 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Password -->
         <flux:input
             wire:model="password"
-            :label="__('Password')"
+            id="password"
+            label="{{ __('Password') }}"
             type="password"
+            name="password"
             required
             autocomplete="new-password"
-            :placeholder="__('Password')"
+            placeholder="Password"
         />
 
         <!-- Confirm Password -->
         <flux:input
             wire:model="password_confirmation"
-            :label="__('Confirm password')"
+            id="password_confirmation"
+            label="{{ __('Confirm password') }}"
             type="password"
+            name="password_confirmation"
             required
             autocomplete="new-password"
-            :placeholder="__('Confirm password')"
+            placeholder="Confirm password"
         />
 
         <div class="flex items-center justify-end">

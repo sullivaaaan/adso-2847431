@@ -23,30 +23,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = fake()->randomElement(array('Female', 'Male'));
+        $name = ($gender == 'Female') ? $name = fake() -> firstNameFemale() 
+                                      : $name = fake() -> firstNameMale();
+        ($gender == 'Female') ? $g = 'girl' : $g = 'boy';
+        $id = fake()->numerify('75######');
+        copy('https://avatar.iran.liara.run/public/'.$g, public_path('images/'.$id.'.png'));
         return [
-                'document' => fake()->randomNumber(8, true),
-                'gender' => fake()->randomElement(['Male', 'Female']),
-                'fullname' => function ($attributes) {
-                    return $attributes['gender'] === 'Male' ? fake()->firstNameMale() . ' ' . fake()->lastName() : fake()->firstNameFemale() . ' ' . fake()->lastName();
-                },
-                'birthdate' => fake()->dateTimeBetween('1974-01-01', '2004-12-31')->format('Y-m-d'), // Entre 1974 y 2004
-                'photo' => function ($attributes) {
-                    return $attributes['gender'] === 'Male'
-                        ? 'https://avatar.iran.liara.run/public/boy' . fake()->numberBetween(1, 99) . '.jpg'
-                        : 'https://avatar.iran.liara.run/public/girl' . fake()->numberBetween(1, 99) . '.jpg';
-                },
-                'phone' => fake()->numerify('300#######'),
-                'email' => fake()->unique()->safeEmail(),
-                'email_verified_at' => fake()->optional()->dateTime(),
-                'password' => bcrypt('1234'), // Contraseña fija en 1234
-                'role' => fake()->randomElement(['Admin', 'User', 'Moderator']),
-                'remember_token' => fake()->uuid(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-            
-            
-            
+            'document' => $id,
+            'fullname' => $name. " " .fake()->lastName(),
+            'gender'=>  $gender,
+            'birthdate' => fake()->dateTimeBetween('1974-01-01','2004-12-31'),
+            'photo' => $id.'.png',
+            'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->numerify('320######'),
+            'email_verified_at' => now(),
+            'password' => static:: $password ??= Hash::make('12345'),
+            'remember_token' => Str::random(10)
+        ];
     }
 
     /**

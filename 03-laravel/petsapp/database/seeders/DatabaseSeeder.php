@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {   
+    {
         //seeders
-        $this->call([
-            UserSeeder::class,
-            PetSeeder::class
-
-        ]);
-        //factories
-        // // User::factory(10)->create();
-        pet::factory(100)->create();
+        // $this->call([
+        //     UserSeeder::class,
+        //     PetSeeder::class
+        // ]);
+        // Factories
+        Pet::factory(100)->create();
         User::factory(25)->create();
+
+        // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
