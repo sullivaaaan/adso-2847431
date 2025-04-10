@@ -65,6 +65,11 @@ route::get('view/blade', function(){
 
 });
 
+route::get('show/pet/{id}', function(){
+    $pet = pet::find(request()->id);
+    return view('show-pet')->with('pet', $pet);
+});
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
