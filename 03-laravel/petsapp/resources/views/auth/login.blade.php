@@ -50,6 +50,8 @@
 @extends('layouts.app')
 @section('title', 'Login PetsApp')
 @section('content')
+<form method="POST" action="{{route('login')}}">
+    @csrf
 <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
     <h1 class="text-2xl text-center flex justify-center items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
@@ -64,4 +66,5 @@
     
     <button class="btn mt-4 bg-cyan-800 text-white rounded-full ">Login</button>
   </fieldset>
+</form>
 @endsection
