@@ -6,6 +6,8 @@ use Livewire\Volt\Volt;
 use App\Models\User as User;
 use App\Models\Pet as Pet;
 use illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,10 +71,17 @@ route::get('show/pet/{id}', function(){
     $pet = pet::find(request()->id);
     return view('show-pet')->with('pet', $pet);
 });
+route::Get('/dashboard', function(request $request) {
+    if(auth::user()->role== 'admin'){
+        return view('dashboard');
+    }else{
+        auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->back()->with('error', 'role not exist');}
+    })
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
