@@ -7,7 +7,7 @@
         <title>@yield('title')</title>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     </head>
-    <body class="bg-cyan-800 min-h-[100dvh] flex justify-center items-center">
+    <body class="bg-cyan-800 min-h-[100dvh] flex-col flex justify-center items-center">
         @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </body>
