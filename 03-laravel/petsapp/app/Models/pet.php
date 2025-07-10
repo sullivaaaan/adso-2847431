@@ -16,10 +16,17 @@ class Pet extends Model
         'age',
         'breed',
         'location',
-        'description'
+        'description',
+        'status' 
     ];
     // relationShip: pet hasOne Adoption
     public function adoption(){
         return $this->hasOne(Adoption::class);
+    }
+
+   
+    public function getIsAdoptedAttribute()
+    {
+        return (bool) $this->status; 
     }
 }
